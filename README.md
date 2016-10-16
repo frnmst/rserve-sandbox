@@ -1,5 +1,13 @@
 # R Rserve docker image for safe execution
 
+## NOTE
+
+The Makefile in this branch is not intendended to be run manually.
+
+Post installation and remove hooks are needed before you can actually run this.
+
+## Information
+
 This directory builds a docker image based on Debian that safely executes 
 Rserve. The Rserve instance is made available as `/home/rserve/socket`. To 
 protect the container, we:
