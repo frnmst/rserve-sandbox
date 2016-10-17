@@ -9,7 +9,6 @@ USER=rserve
 UHOME=/home/$(USER)
 MOUNT=-v /home/$(USER):/home/rserve
 DOCKERFILE=Dockerfile
-RUNNING_CONTAINERS=$$(docker ps --format "{{.ID}}\t{{.Image}}" | grep rserve | awk '{print $1}')
 
 all::
 	@echo "Targets:"
