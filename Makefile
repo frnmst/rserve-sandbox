@@ -3,10 +3,12 @@
 # Copyright (c) 2016, Jan Wielemaker, Franco Masotti.
 # See LICENSE file for details.
 
+# This file is placed in /opt/rserve-sandbox-docker
+
 USER=rserve
 UHOME=/home/$(USER)
 MOUNT=-v /home/$(USER):/home/rserve
-DOCKERFILE=/home/rsd/Dockerfile
+DOCKERFILE=Dockerfile
 
 all::
 	@echo "Targets:"
@@ -17,7 +19,7 @@ all::
 	@echo "  shell		Run an interactive shell in the image"
 
 image:	Dockerfile
-	docker build -t rserve -f $(DOCKERFILE)
+	docker build -t rserve .
 
 Dockerfile: Dockerfile.in
 	sed -e "s/@USERID@/$$(id -u $(USER))/g" \
