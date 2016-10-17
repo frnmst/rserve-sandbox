@@ -6,6 +6,7 @@
 USER=rserve
 UHOME=/home/$(USER)
 MOUNT=-v /home/$(USER):/home/rserve
+DOCKERFILE=/home/rsd/Dockerfile
 
 all::
 	@echo "Targets:"
@@ -16,12 +17,12 @@ all::
 	@echo "  shell		Run an interactive shell in the image"
 
 image:	Dockerfile
-	docker build -t rserve .
+	docker build -t rserve -f $(DOCKERFILE)
 
 Dockerfile: Dockerfile.in
 	sed -e "s/@USERID@/$$(id -u $(USER))/g" \
 	    -e "s/@GROUPID@/$$(id -g $(USER))/g" \
-		Dockerfile.in > Dockerfile
+		Dockerfile.in > $(DOCKERFILE)
 
 run:
 	docker run --net=none --detach $(MOUNT) rserve
