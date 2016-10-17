@@ -9,14 +9,14 @@ USER=rserve
 UHOME=/home/$(USER)
 MOUNT=-v /home/$(USER):/home/rserve
 DOCKERFILE=Dockerfile
+RUNNING_CONTAINERS=$$(docker ps --format "{{.ID}}\t{{.Image}}" | grep rserve | awk '{print $1}')
 
 all::
 	@echo "Targets:"
 	@echo
-	@echo "  image		Build the docker image"
-	@echo "  run		Run the image one time"
-	@echo "  install	Run the image with --restart=unless-stopped"
-	@echo "  shell		Run an interactive shell in the image"
+	@echo "  image      Build the docker image"
+	@echo "  run        Run the image one time"
+	@echo "  stop       Quit and remove the current docker container."
 
 image:	Dockerfile
 	docker build -t rserve .
@@ -27,8 +27,7 @@ Dockerfile: Dockerfile.in
 		Dockerfile.in > $(DOCKERFILE)
 
 run:
-	docker run --net=none --detach $(MOUNT) rserve
+	docker run --net=none --rm $(MOUNT) rserve
 
-install:
-	docker run --net=none --detach --restart=unless-stopped $(MOUNT) rserve
-
+stop:
+	docker stop $$(docker ps --format "{{.ID}}\t{{.Image}}" | grep rserve | awk '{print $$1}') 1>/dev/null 2>/dev/null
