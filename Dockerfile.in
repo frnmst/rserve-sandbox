@@ -5,9 +5,9 @@
 FROM r-base
 
 RUN apt-get update && apt-get install -y \
-	libcurl4-openssl-dev \
+	libcurl3 \
 	libssl-dev \
-	libcairo-dev
+	libcairo2
 
 # install packages
 # these are ones I like
