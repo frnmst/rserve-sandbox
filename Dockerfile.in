@@ -16,8 +16,8 @@ RUN echo 'install.packages(c("ggplot2"), repos="http://cloud.r-project.org/", de
 RUN echo 'install.packages("Rserve",,"http://rforge.net/",type="source")' > /tmp/packages2.R \
     && Rscript /tmp/packages2.R
 
-RUN echo 'install.packages(c("plotly"), repos="http://cloud.r-project.org/", dependencies=TRUE)' > /tmp/packages3.R \
-    && Rscript /tmp/packages3.R
+# RUN echo 'install.packages(c("plotly"), repos="http://cloud.r-project.org/", dependencies=TRUE)' > /tmp/packages3.R \
+#    && Rscript /tmp/packages3.R
 
 # Disable development tools
 RUN chmod o-rwx \
