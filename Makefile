@@ -13,9 +13,10 @@ DOCKERFILE=Dockerfile
 all::
 	@echo "Targets:"
 	@echo
-	@echo "  image      Build the docker image"
-	@echo "  run        Run the image one time"
-	@echo "  stop       Quit and remove the current docker container."
+	@echo "  image      build the docker image"
+	@echo "  remove     remove the docker image"
+	@echo "  run        run the image one time"
+	@echo "  stop       quit and remove the current docker container"
 
 image:	Dockerfile
 	docker build -t rserve .
@@ -25,8 +26,12 @@ Dockerfile: Dockerfile.in
 	    -e "s/@GROUPID@/$$(id -g $(USER))/g" \
 		Dockerfile.in > $(DOCKERFILE)
 
+remove:
+	docker rmi -f rserve
+
 run:
 	docker run --net=none --rm $(MOUNT) rserve
 
 stop:
 	docker stop $$(docker ps --format "{{.ID}}\t{{.Image}}" | grep rserve | awk '{print $$1}') 1>/dev/null 2>/dev/null
+

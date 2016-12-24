@@ -28,13 +28,16 @@ You need to install and enable Docker.
   - Updates `Dockerfile`
   - Creates the docker image
 
+- `remove`
+  - Removes the current image.
+
 - `run`
   - Starts the Rserve container.  This creates a Unix domain
     socket `/home/rserve/socket` that allows contacting
     the R server.
 
-- `shell`
-  - Starts the container with a shell, so you can look around
+- `stop`
+  - Stops and removes the current container.
 
 ## Customization
 
