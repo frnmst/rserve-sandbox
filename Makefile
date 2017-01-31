@@ -15,7 +15,7 @@ all::
 	@echo
 	@echo "  image      build the docker image"
 	@echo "  remove     remove the docker image"
-	@echo "  run        run the image one time"
+	@echo "  run        run the container one time"
 	@echo "  stop       quit and remove the current docker container"
 
 image:	Dockerfile
