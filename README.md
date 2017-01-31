@@ -4,7 +4,8 @@
 
 The Makefile in this branch is not intendended to be run manually.
 
-[Post installation](https://frnmst.github.io/swish-installer/swish-installer.html#Install-actions) 
+Post 
+[installation](https://frnmst.github.io/swish-installer/swish-installer.html#Install-actions)
 and
 [remove](https://frnmst.github.io/swish-installer/swish-installer.html#Remove-actions)
 hooks are needed before you can actually run this.
