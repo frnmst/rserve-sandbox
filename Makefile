@@ -32,6 +32,8 @@ remove:
 run:
 	docker run --net=none --rm $(MOUNT) rserve
 
+# The following comented command only works for Docker >= 1.8.0 (2015-08-11)
+# docker stop $$(docker ps --format "{{.ID}}\t{{.Image}}" | grep rserve | awk '{print $$1}') 1>/dev/null 2>/dev/null
 stop:
-	docker stop $$(docker ps --format "{{.ID}}\t{{.Image}}" | grep rserve | awk '{print $$1}') 1>/dev/null 2>/dev/null
+	docker stop $$(docker ps | awk '{print $$1 "\t" $$2}' | grep rserve | awk '{print $$1}') 1>/dev/null 2>/dev/null
 
