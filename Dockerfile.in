@@ -5,9 +5,9 @@
 FROM r-base
 
 RUN apt-get update && apt-get install -y \
-	libcurl3 \
-	libssl-dev \
-	libcairo2
+    libcurl4-gnutls-dev \
+    libssl-dev \
+    libcairo-5c0
 
 # install packages
 RUN echo 'install.packages(c("ggplot2"), repos="http://cloud.r-project.org/", dependencies=TRUE)' > /tmp/packages.R \
@@ -18,9 +18,6 @@ RUN echo 'install.packages(c("Rserve"), repos="http://cloud.r-project.org/", dep
 
 RUN echo 'install.packages(c("gridExtra"), repos="http://cloud.r-project.org/", dependencies=TRUE)' > /tmp/packages3.R \
     && Rscript /tmp/packages3.R
-
-# RUN echo 'install.packages(c("plotly"), repos="http://cloud.r-project.org/", dependencies=TRUE)' > /tmp/packages4.R \
-#    && Rscript /tmp/packages4.R
 
 # Disable development tools
 RUN chmod o-rwx \
