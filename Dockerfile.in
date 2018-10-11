@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 RUN echo 'install.packages(c("ggplot2"), repos="http://cloud.r-project.org/", dependencies=TRUE)' > /tmp/packages.R \
     && Rscript /tmp/packages.R
 
-RUN echo 'install.packages(c("Rserve"), repos="http://cloud.r-project.org/", dependencies=TRUE)' > /tmp/packages2.R \
+RUN echo 'install.packages(c("Rserve"), repos="http://rforge.net/", dependencies=TRUE)' > /tmp/packages2.R \
     && Rscript /tmp/packages2.R
 
 RUN echo 'install.packages(c("gridExtra"), repos="http://cloud.r-project.org/", dependencies=TRUE)' > /tmp/packages3.R \
